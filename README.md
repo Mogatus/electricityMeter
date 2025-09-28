@@ -9,3 +9,7 @@ Components:
 * startServer.sh: Starts the flask app and keeps running until ended by user.
 * startCollect.sh: Executes main.py. Can be placed in cron tab near end of day.
 * requirements.txt: Textfile with environment info. Environment can be set up with: pip3 install -r ./requirements.txt
+
+Starting server with gunicorn:
+gunicorn -w 4 -b 0.0.0.0 'electricityServer:app'
+
