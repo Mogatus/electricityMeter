@@ -11,5 +11,5 @@ Components:
 * requirements.txt: Textfile with environment info. Environment can be set up with: pip3 install -r ./requirements.txt
 
 Starting server with gunicorn:
-gunicorn -w 4 -b 0.0.0.0 'electricityServer:app'
+screen -S electricityServer gunicorn -w 2 -b 0.0.0.0:8000 electricityServer:app
 
