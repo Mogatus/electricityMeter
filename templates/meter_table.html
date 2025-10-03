@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head><title>Meter Data</title></head>
-    <body>
-        <h2>Meter Data</h2>
-        <table border="1">
-            <tr>
-                <th>id</th>
-                <th>load</th>
-                <th>pv</th>
-                <th>feedIn</th>
-                <th>purchase</th>
-                <th>timestamp</th>
-            </tr>
-            {% for row in data %}
-            <tr>
-                <td>{{ row.id }}</td>
-                <td>{{ row.loadVal }}</td>
-                <td>{{ row.pv }}</td>
-                <td>{{ row.grid_feed_in }}</td>
-                <td>{{ row.grid_purchase }}</td>
-                <td>{{ row.saveTimestamp }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </body>
-    </html>
+<head>
+    <title>Meter Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+        }
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eaeaea;
+            text-align: center;
+        }
+        th {
+            background: #555;
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f0f0f0;
+        }
+        tr:nth-child(odd) {
+            background: #e0e0e0;
+        }
+        tr:hover {
+            background: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Meter Data in Wh</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Load</th>
+            <th>PV</th>
+            <th>Feed-In</th>
+            <th>Purchase</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.loadVal }}</td>
+            <td>{{ row.pv }}</td>
+            <td>{{ row.grid_feed_in }}</td>
+            <td>{{ row.grid_purchase }}</td>
+            <td>{{ row.saveTimestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
