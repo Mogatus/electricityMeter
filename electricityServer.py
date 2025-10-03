@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template
 import mysql.connector
 
 
@@ -32,59 +32,8 @@ def get_meter_data():
     print(f"Fetched {len(results)} records from database.")
     print(results)
 
-    html = """
-    <html>
-    <head><title>Tabelle</title></head>
-    <body>
-        <h2>Meter Data</h2>
-        <table border="1">
-            <tr>
-                <th>id</th>
-                <th>load</th>
-                <th>pv</th>
-                <th>feedIn</th>
-                <th>purchase</th>
-                <th>timestamp</th>
-            </tr>
-            {% for row in data %}
-            <tr>
-                <td>{{ row.id }}</td>
-                <td>{{ row.loadVal }}</td>
-                <td>{{ row.pv }}</td>
-                <td>{{ row.grid_feed_in }}</td>
-                <td>{{ row.grid_purchase }}</td>
-                <td>{{ row.saveTimestamp }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </body>
-    </html>
-    """
+    return render_template("meter_table.html", data=results)
 
-    return render_template_string(html, data=results)  
-
-@app.route('/test')
-def table():
-    data = [
-        {'Name': 'Alice', 'Alter': 30},
-        {'Name': 'Bob', 'Alter': 25},
-        {'Name': 'Charlie', 'Alter': 35}
-    ]
-    html = """
-    <html>
-    <head><title>Tabelle</title></head>
-    <body>
-        <h2>Personenliste</h2>
-        <table border="1">
-            <tr><th>Name</th><th>Alter</th></tr>
-            {% for row in data %}
-            <tr><td>{{ row.Name }}</td><td>{{ row.Alter }}</td></tr>
-            {% endfor %}
-        </table>
-    </body>
-    </html>
-    """
-    return render_template_string(html, data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
