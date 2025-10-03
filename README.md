@@ -13,3 +13,7 @@ Components:
 Starting server with gunicorn:
 screen -S electricityServer gunicorn -w 2 -b 0.0.0.0:8000 electricityServer:app
 
+Stopping the server:
+screen -ls
+screen -r <output>
+
